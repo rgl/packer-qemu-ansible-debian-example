@@ -1,0 +1,30 @@
+- name: Update APT cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 10800 # 3h
+  changed_when: false
+
+- name: Install vim
+  block:
+    - name: Install vim
+      apt:
+        name: vim
+        install_recommends: no
+    - name: Install vimrc
+      copy:
+        src: vimrc.local
+        dest: /etc/vim/vimrc.local
+
+- name: Install login profile
+  copy:
+    src: login.sh
+    dest: /etc/profile.d/login.sh
+
+- name: Install libreadline inputrc
+  copy:
+    src: inputrc
+    dest: /etc/inputrc
+
+- name: Install tcpdump
+  apt:
+    name: tcpdump
