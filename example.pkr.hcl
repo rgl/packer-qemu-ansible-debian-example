@@ -3,18 +3,18 @@ packer {
     # see https://github.com/hashicorp/packer-plugin-vagrant
     vagrant = {
       version = "1.0.3"
-      source = "github.com/hashicorp/vagrant"
+      source  = "github.com/hashicorp/vagrant"
     }
     # see https://github.com/hashicorp/packer-plugin-ansible
     ansible = {
       version = "1.1.0"
-      source = "github.com/hashicorp/ansible"
+      source  = "github.com/hashicorp/ansible"
     }
   }
 }
 
 variable "disk_size" {
-  type = string
+  type    = string
   default = "61440"
 }
 
@@ -27,21 +27,21 @@ variable "vagrant_box" {
 }
 
 source "qemu" "example" {
-  headless = true
-  accelerator = "kvm"
-  cores = 2
-  memory = 2*1024
-  disk_size = var.disk_size
-  disk_interface = "virtio-scsi"
-  disk_discard = "unmap"
-  disk_image = true
+  headless         = true
+  accelerator      = "kvm"
+  cores            = 2
+  memory           = 2 * 1024
+  disk_size        = var.disk_size
+  disk_interface   = "virtio-scsi"
+  disk_discard     = "unmap"
+  disk_image       = true
   use_backing_file = true
-  iso_url = var.disk_image
-  iso_checksum = "none"
-  ssh_username = "vagrant"
-  ssh_password = "vagrant"
-  ssh_timeout = "60m"
-  boot_wait = "5s"
+  iso_url          = var.disk_image
+  iso_checksum     = "none"
+  ssh_username     = "vagrant"
+  ssh_password     = "vagrant"
+  ssh_timeout      = "60m"
+  boot_wait        = "5s"
   shutdown_command = "sudo poweroff"
 }
 
@@ -50,12 +50,12 @@ build {
     "source.qemu.example",
   ]
   provisioner "ansible" {
-    command = "./ansible-playbook.sh"
+    command       = "./ansible-playbook.sh"
     playbook_file = "playbook.yml"
   }
   # TODO https://github.com/hashicorp/packer-plugin-vagrant/issues/44
   post-processor "vagrant" {
-    output = var.vagrant_box
+    output               = var.vagrant_box
     vagrantfile_template = "Vagrantfile.template"
   }
 }
