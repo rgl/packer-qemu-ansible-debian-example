@@ -2,9 +2,9 @@
 
 This shows how to provision a VM image using [Ansible](https://www.ansible.com/) from a [Packer](https://www.packer.io/) template.
 
-# Usage (Ubuntu 20.04)
+# Usage (Ubuntu 22.04)
 
-Install packer, qemu/kvm, docker, make, vagrant and the [Debian 11 vagrant box](https://github.com/rgl/debian-vagrant).
+Install packer, qemu/kvm, docker, make, vagrant and the [Debian 12 vagrant box](https://github.com/rgl/debian-vagrant).
 
 Provision the VM image and vagrant box:
 
