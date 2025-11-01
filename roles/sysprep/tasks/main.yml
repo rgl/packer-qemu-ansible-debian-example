@@ -42,8 +42,8 @@
 # clean the cache and remove unneeded packages.
 - name: Clean packages
   apt:
-    autoclean: yes
-    autoremove: yes
+    autoclean: true
+    autoremove: true
 
 # zero the free disk space -- for better compression of the box file.
 # NB prefer discard/trim (safer; faster) over creating a big zero filled file

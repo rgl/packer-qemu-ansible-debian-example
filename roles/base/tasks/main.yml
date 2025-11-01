@@ -1,6 +1,6 @@
 - name: Update APT cache
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 10800 # 3h
   changed_when: false
 
@@ -9,7 +9,7 @@
     - name: Install vim
       apt:
         name: vim
-        install_recommends: no
+        install_recommends: false
     - name: Install vimrc
       copy:
         src: vimrc.local
