@@ -27,15 +27,24 @@ variable "vagrant_box" {
 }
 
 source "qemu" "example" {
-  headless         = true
-  accelerator      = "kvm"
-  cores            = 2
-  memory           = 2 * 1024
+  headless          = true
+  accelerator       = "kvm"
+  machine_type      = "q35"
+  efi_boot          = true
+  efi_firmware_code = "/usr/share/OVMF/OVMF_CODE_4M.fd"
+  efi_firmware_vars = "/usr/share/OVMF/OVMF_VARS_4M.fd"
+  cores             = 2
+  memory            = 2 * 1024
+  qemuargs = [
+    ["-cpu", "host"],
+  ]
   disk_size        = var.disk_size
   disk_interface   = "virtio-scsi"
+  disk_cache       = "unsafe"
   disk_discard     = "unmap"
   disk_image       = true
   use_backing_file = true
+  net_device       = "virtio-net"
   iso_url          = var.disk_image
   iso_checksum     = "none"
   ssh_username     = "vagrant"

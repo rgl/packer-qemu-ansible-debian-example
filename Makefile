@@ -14,7 +14,7 @@ build: packer-qemu-ansible-debian-example.box
 		packer init example.pkr.hcl
 	CHECKPOINT_DISABLE=1 PACKER_LOG=1 PACKER_LOG_PATH=$*-packer.log \
 	PKR_VAR_vagrant_box=$@ \
-  	PKR_VAR_disk_image="${HOME}/.vagrant.d/boxes/debian-13-amd64/0.0.0/libvirt/box_0.img" \
+  	PKR_VAR_disk_image="${HOME}/.vagrant.d/boxes/debian-13-uefi-amd64/0.0.0/libvirt/box_0.img" \
 		packer build -only=qemu.example -on-error=abort example.pkr.hcl
 	@echo BOX successfully built!
 	@echo to add to local vagrant install do:
